@@ -1,0 +1,30 @@
+services:
+  frontend: # Next.js frontend
+    build: ./frontend
+    container_name: cue_web_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_NODE_ENV=local
+      - CHOKIDAR_USEPOLLING=true
+      - NEXT_WEBPACK_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - cue
+    restart: always
+    command: npm run dev
+
+volumes:
+  rabbitmq_data:
+  mysql_data:
+  redis_data:
+
+  
+networks:
+  cue:
