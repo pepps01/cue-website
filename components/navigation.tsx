@@ -1,8 +1,6 @@
 import { ArrowLeft, User } from 'lucide-react';
 import { Button } from './ui/button';
-// import type { UserMode } from '../App';
-
-export type UserMode = 'rider' | 'driver' | null;
+import { UserMode } from '../types';
 
 interface NavigationProps {
   onBack: () => void;

@@ -1,10 +1,13 @@
+'use client';
+
 import { Car, Navigation, Smartphone, CreditCard, Zap, MessageSquare } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import logo from 'figma:asset/22c4af6da20e1f1ab8da016b3205d656a88fe02a.png';
-
-export type UserMode = 'rider' | 'driver' | null;
+// import logo from 'figma:asset/22c4af6da20e1f1ab8da016b3205d656a88fe02a.png';
+// import { UserMode } from '../types';
+import Image from 'next/image';
+import { UserMode } from '@/types';
 
 interface HeroSectionProps {
   onModeSelect: (mode: UserMode) => void;
@@ -26,7 +29,7 @@ export function HeroSection({ onModeSelect }: HeroSectionProps) {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
           <div className="text-center">
-            {/* <img src={logo} alt="Cue Logo" className="h-20 md:h-32 w-20 md:w-32 mx-auto mb-6" /> */}
+            {/* <Image src={logo} alt="Cue Logo" className="h-20 md:h-32 w-20 md:w-32 mx-auto mb-6" /> */}
             <h1 className="text-4xl md:text-6xl text-white mb-4 md:mb-6">Cue</h1>
             <p className="text-xl md:text-2xl text-white/90 mb-3 md:mb-4">
               Your ride, on demand

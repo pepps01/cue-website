@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { DollarSign, Clock, Navigation, TrendingUp, Star, MapPin, Phone, Check, X } from 'lucide-react';
 import { Button } from './ui/button';

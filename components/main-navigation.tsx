@@ -1,37 +1,14 @@
+'use client';
+
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+// import logo from 'figma:asset/22c4af6da20e1f1ab8da016b3205d656a88fe02a.png';
+import { UserMode } from '../types';
+import Image from 'next/image';
 
-import logo from 'figma:asset/22c4af6da20e1f1ab8da016b3205d656a88fe02a.png';
-
-
-export type RideStatus = 'idle' | 'searching' | 'matched' | 'pickup' | 'inProgress' | 'completed';
-
-export interface Driver {
-  id: string;
-  name: string;
-  rating: number;
-  car: string;
-  licensePlate: string;
-  distance: number;
-  eta: number;
-  image: string;
-  lat: number;
-  lng: number;
-}
-
-export interface Ride {
-  id: string;
-  pickup: string;
-  destination: string;
-  driver?: Driver;
-  status: RideStatus;
-  price: number;
-  distance: number;
-  duration: number;
-}
-
-export type UserMode = 'rider' | 'driver' | null;
 interface MainNavigationProps {
   onModeSelect: (mode: UserMode) => void;
   currentMode?: UserMode;
@@ -39,10 +16,21 @@ interface MainNavigationProps {
 
 export function MainNavigation({ onModeSelect, currentMode }: MainNavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   const handleModeSelect = (mode: UserMode) => {
     onModeSelect(mode);
     setMobileMenuOpen(false);
+    if (mode === 'rider') {
+      router.push('/rider');
+    } else if (mode === 'driver') {
+      router.push('/driver');
+    }
+  };
+
+  const handleLogoClick = () => {
+    onModeSelect(null);
+    router.push('/');
   };
 
   return (
@@ -50,8 +38,8 @@ export function MainNavigation({ onModeSelect, currentMode }: MainNavigationProp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.reload()}>
-            {/* <img src={logo} alt="Cue Logo" className="h-10 w-10" /> */}
+          <div className="flex items-center gap-2 cursor-pointer" onClick={handleLogoClick}>
+            {/* <Image src={logo} alt="Cue Logo" className="h-10 w-10" /> */}
             <span className="text-2xl" style={{ color: '#0195FF' }}>Cue</span>
           </div>
 
@@ -63,6 +51,9 @@ export function MainNavigation({ onModeSelect, currentMode }: MainNavigationProp
             <a href="#how-it-works" className="text-gray-700 hover:text-[#0195FF] transition-colors">
               How it Works
             </a>
+            <Link href="/privacy" className="text-gray-700 hover:text-[#0195FF] transition-colors">
+              Privacy
+            </Link>
             {!currentMode && (
               <>
                 <Button
@@ -123,6 +114,13 @@ export function MainNavigation({ onModeSelect, currentMode }: MainNavigationProp
             >
               How it Works
             </a>
+            <Link 
+              href="/privacy" 
+              className="block py-2 text-gray-700 hover:text-[#0195FF]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Privacy
+            </Link>
             {!currentMode && (
               <>
                 <Button

@@ -1,37 +1,13 @@
+'use client';
+
 import { useState } from 'react';
 import { MapPin, Navigation, Clock, DollarSign, Zap, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card } from './ui/card';
 import { Label } from './ui/label';
+import { Ride, Driver } from '../types';
 
-
-export type UserMode = 'rider' | 'driver' | null;
-export type RideStatus = 'idle' | 'searching' | 'matched' | 'pickup' | 'inProgress' | 'completed';
-
-export interface Driver {
-  id: string;
-  name: string;
-  rating: number;
-  car: string;
-  licensePlate: string;
-  distance: number;
-  eta: number;
-  image: string;
-  lat: number;
-  lng: number;
-}
-
-export interface Ride {
-  id: string;
-  pickup: string;
-  destination: string;
-  driver?: Driver;
-  status: RideStatus;
-  price: number;
-  distance: number;
-  duration: number;
-}
 interface BookingInterfaceProps {
   onRideUpdate: (ride: Ride) => void;
 }

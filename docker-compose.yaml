@@ -20,11 +20,6 @@ services:
     restart: always
     command: npm run dev
 
-volumes:
-  rabbitmq_data:
-  mysql_data:
-  redis_data:
-
   
 networks:
   cue:
